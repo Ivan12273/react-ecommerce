@@ -1,23 +1,70 @@
-# react-ecommerce
+# Getting Started with Create React App
 
-React Practice Project 
-Students should build a simple online store application, it should allow users to navigate products organized by categories, add items to the shopping cart and process item’s payment. 
-  
-* feat1 – Home page should display all available categories and allow navigation to individual categories. 
-* feat2 – Category page should display all items for a given category, it should allow user to add items to the shopping cart. 
-* feat3 – Directory page should display top 5 items for each category, it should allow user to add items to the shopping cart. 
-* feat4 – Shopping cart preview should allow users, at any moment, a quick visualization of items added to the cart. 
-* feat5 – In order to check out, users must be logged in, application should allow users to register and log in once they’re registered. Users should remain logged in even if they close the application until JWT expires. 
-* feat6 – Checkout page should allow users to review items in the cart, add or remove items, increase/decrease item’s quantity, display purchase total and recalculate it when items are removed or quantities are edited. 
-* feat7 – Process payment should allow users to input payment information (card number, card holder, expiration and CVV), simulate payment processing and display purchase confirmation message. 
-  
-Restrictions 
-Students must use knowledge acquired in every session to build the application. 
-If specific libraries are used during the session, they must be used to build the application. 
-Students will organize in teams up to 3 members to build the application. 
-  
-Recommendations 
-Feel free to use the same or similar design/layout of the application reviewed in session. 
-Ask your mentors/teachers to clarify any question or implement best practices in your application. 
-Setup a github repository and use Gitflow workflow. 
-Even when you’re working in teams, share ideas, questions and thoughts with the entire group. 
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Available Scripts
+
+In the project directory, you can run:
+
+### `yarn start`
+
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+The page will reload if you make edits.\
+You will also see any lint errors in the console.
+
+### `yarn test`
+
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+
+### `yarn build`
+
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
+
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+### `yarn eject`
+
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
+
+### Code Splitting
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+
+### Analyzing the Bundle Size
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+
+### Making a Progressive Web App
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+
+### Advanced Configuration
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+
+### Deployment
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+
+### `yarn build` fails to minify
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
