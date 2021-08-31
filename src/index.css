@@ -15,39 +15,12 @@ body {
 
 .grid-container {
   display: grid;
-  grid-template-areas: 
-    "header"
+  grid-template-areas:
     "main"
     "footer";
   grid-template-columns: 1fr;
-  grid-template-rows: 5rem 1fr 5rem;
+  grid-template-rows: 1fr 5rem;
   height: 100%;
-}
-
-.header {
-  grid-area: header;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.5rem;
-}
-
-.brand a {
-  text-decoration: none;
-  color: #000000;
-  margin-left: 1.5rem;
-}
-
-.brand .logo {
-  font-size: 2rem;
-  font-weight: bold;
-  margin: 0 1.5rem 0 1.5rem;
-}
-
-.header-links a {
-  color: #000000;
-  text-decoration: none;
-  margin-right: 1.5rem;
 }
 
 .main {
