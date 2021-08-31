@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const ProductDetailWrapper = styled.div`
   display: flex;
-  height: 100%;
   justify-content: center;
   margin-top: 20px;
   @media (max-width: 769px) {
