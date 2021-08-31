@@ -20,7 +20,7 @@ body {
     "footer";
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 5rem;
-  height: 100%;
+  height: calc(100vh - 59px);
 }
 
 .main {
