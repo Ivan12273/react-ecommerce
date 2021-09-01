@@ -1,9 +1,10 @@
 import './App.css';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import Home from './components/Home/Home';
 import ProductDetail from './components/ProductDetail/ProductDetail';
 import Header from './components/Header/Header';
 import Login from './components/Login/Login';
+import Register from './components/Register/Register';
 
 
 function App() {
@@ -12,11 +13,10 @@ function App() {
       <Header />
       <div className="grid-container">
         <main className="main">
-          {/* <div className="content"> */}
-            <Route path="/" exact={true} component={Home}/>
-            <Route path="/product/:id" exact={true} component={ProductDetail}/>
-            <Route path="/login" exact={true} component={Login}/>
-          {/* </div> */}
+          <Route path="/" exact={true} component={Home}/>
+          <Route path="/product/:id" exact={true} component={ProductDetail}/>
+          <Route path="/login" exact={true} component={Login}/>
+          <Route path="/register" exact={true} component={Register}/>
         </main>
         <footer className="footer">
           All right reserved.
