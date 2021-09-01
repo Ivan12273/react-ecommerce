@@ -17,7 +17,7 @@ export const Form = styled.form`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  .error {
+  div.error {
     color: red;
     width: 100%;
     font-size: 1.8rem;
