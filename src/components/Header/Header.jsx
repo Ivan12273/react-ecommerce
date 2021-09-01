@@ -34,7 +34,7 @@ const Header = () => {
         <Link to="/">Directory</Link>
       </div>
       <div className="header-links">
-        <Link to="/">
+        <Link to="/cart">
           <span className="link-title">My Bag {" "}</span>
           <FontAwesomeIcon icon={faShoppingBag} className="icon" />
         </Link>
