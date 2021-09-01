@@ -4,12 +4,23 @@ import {
   InputContainer
 } from "./InputStyles"
 
-const Input = ({title, type = "text"}) => {
+const Input = ({ id, name, type = "text", onChange, value, error }) => {
   return (
     <>
       <InputContainer>
-        <Label>{title}</Label>
-        <InputStyles placeholder={title} type={type} />
+        <Label>{name}</Label>
+        <InputStyles
+          id={id}
+          placeholder={name}
+          type={type}
+          onChange={onChange}
+          value={value}
+          className={error ? "error" : ""}
+        />
+        {error ?
+          <span className="error">{error}</span>
+          : ""
+        }
       </InputContainer>
     </>
   );

@@ -8,6 +8,9 @@ export const Input = styled.input`
   font-size: 1.5rem;
   padding: 5px 10px;
   display: block;
+  &.error {
+    border: 1px solid red;
+  }
 `;
 
 export const Label = styled.label`
@@ -18,4 +21,7 @@ export const InputContainer = styled.div`
   display: block;
   width: 100%;
   margin-bottom: 10px;
+  .error {
+    color: red;
+  }
 `;

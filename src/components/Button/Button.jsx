@@ -1,8 +1,8 @@
 import { Button as ButtonStyles} from "./ButtonStyles"
 
-const Button = ({children, onClick}) => {
+const Button = ({children, onClick, type = "submit" }) => {
   return (
-    <ButtonStyles onClick={onClick}>
+    <ButtonStyles onClick={onClick} type={type}>
       {children}
     </ButtonStyles>
   );
