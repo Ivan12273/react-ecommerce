@@ -14,7 +14,7 @@ import {
   ProductDetailInfoTextH4,
 } from './ProductDetailStyles';
 
-const ProductDetail = () => {
+const ProductDetail = (props) => {
   const productList = useSelector(state => state.productList);
   const { products, loading, error } = productList;
   const dispatch = useDispatch();
@@ -22,7 +22,11 @@ const ProductDetail = () => {
 
   useEffect(() => {
     dispatch(listProducts());
-  }, [dispatch])
+  }, [dispatch]);
+
+  const handleAddToCart = () => {
+    props.history.push('/cart/' + id + '?qty=' + 1)
+  }
 
   return loading ?
     <div>Loading...</div> :
@@ -42,7 +46,7 @@ const ProductDetail = () => {
                     <ProductDetailInfoTextH1>{product.name}</ProductDetailInfoTextH1>
                     <ProductDetailInfoTextH3>${product.price}</ProductDetailInfoTextH3>
                   </ProductDetailInfoTextWrapper>
-                  <Button>
+                  <Button onClick={handleAddToCart}>
                     Add To Bag
                   </Button>
                 </ProductDetailInfo>
