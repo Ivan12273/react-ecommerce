@@ -1,10 +1,10 @@
 import './App.css';
 import { BrowserRouter, Route } from 'react-router-dom';
-import Home from './components/Home/Home';
-import ProductDetail from './components/ProductDetail/ProductDetail';
+import Home from './components/pages/Home/Home';
+import ProductDetail from './components/pages/ProductDetail/ProductDetail';
 import Header from './components/Header/Header';
-import Login from './components/Login/Login';
-import Register from './components/Register/Register';
+import Login from './components/pages/Login/Login';
+import Register from './components/pages/Register/Register';
 
 
 function App() {

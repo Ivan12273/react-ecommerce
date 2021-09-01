@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { listProducts } from "../../actions/productActions";
-import Button from "../Button/Button"
+import { listProducts } from "../../../redux/actions/productActions";
+import Button from "../../Button/Button"
 import {
   ProductDetailWrapper,
   ProductDetailImageWrapper,
