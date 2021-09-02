@@ -2,7 +2,7 @@ import './CartStyles.css';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from "react-router-dom";
-import { addToCart } from '../../../redux/actions/cartActions';
+import { addToCart } from '../../../redux/cart/cartActions';
 import CartItem from '../../CartItem/CartItem';
 import CartSubtotal from '../../CartSubtotal/CartSubtotal';
 

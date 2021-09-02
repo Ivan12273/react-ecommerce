@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { listProducts } from "../../../redux/actions/productActions";
+import { listProducts } from "../../../redux/product/reducer";
 import Button from "../../Button/Button"
 import {
   ProductDetailWrapper,

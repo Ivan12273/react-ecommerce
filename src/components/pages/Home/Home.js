@@ -2,7 +2,7 @@ import './HomeStyles.css';
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { listProducts } from '../../../redux/actions/productActions';
+import { listProducts } from '../../../redux/product/reducer';
 
 function Home () {
 
@@ -11,11 +11,10 @@ function Home () {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(listProducts());
-        return () => {
-        //
-        };
-    }, [])
+      dispatch(listProducts());
+    }, []);
+
+    console.log(products);
 
     return loading ? <div>Loading... </div> :
     error ? <div>{error}</div> :

@@ -2,7 +2,7 @@ import './CartItemStyles.css';
 import React from 'react'
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom'
-import { addToCart, removeFromCart } from '../../redux/actions/cartActions';
+import { addToCart, removeFromCart } from '../../redux/cart/cartActions';
 
 function CartItem(item) {
 
