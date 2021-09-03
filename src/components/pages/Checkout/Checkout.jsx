@@ -3,6 +3,7 @@ import { useFormik } from "formik";
 import Input from "../../Input/Input";
 import { Wrapper } from "./CheckoutStyles";
 import Button from '../../Button/Button';
+import withAuth from "../../../hocs/withAuth";
 
 
 const Checkout = () => {
@@ -69,4 +70,4 @@ const Checkout = () => {
   );
 };
 
-export default Checkout;
+export default withAuth(Checkout, "/login?bag=true");

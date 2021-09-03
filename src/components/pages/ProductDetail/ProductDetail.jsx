@@ -25,7 +25,7 @@ const ProductDetail = (props) => {
   }, [dispatch]);
 
   const handleAddToCart = () => {
-    props.history.push('/cart/' + id + '?qty=' + 1)
+    props.history.push('/bag/' + id + '?qty=' + 1)
   }
 
   return loading ?

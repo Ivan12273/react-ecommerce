@@ -10,11 +10,15 @@ import Cart from './components/pages/Cart/Cart';
 import Checkout from './components/pages/Checkout/Checkout';
 import { useDispatch } from 'react-redux';
 import { setToken } from './redux/auth/reducer';
+import { useEffect } from 'react';
 
 function App() {
   const dispatch = useDispatch();
   const token = localStorage.getItem("token");
-  if (token) dispatch(setToken(token));
+
+  useEffect(() => {
+    if (token) dispatch(setToken(token));
+  }, [token, dispatch])
 
   return (
     <BrowserRouter>
@@ -26,7 +30,7 @@ function App() {
           <Route path="/product/:id" exact={true} component={ProductDetail}/>
           <Route path="/login" exact={true} component={Login}/>
           <Route path="/register" exact={true} component={Register}/>
-          <Route path="/cart/:id?" component={Cart} />
+          <Route path="/bag/:id?" component={Cart} />
           <Route path="/checkout" component={Checkout} />
         </main>
         <footer className="footer">

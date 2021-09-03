@@ -4,9 +4,15 @@ import Form from "../../Form/Form";
 import Input from "../../Input/Input";
 import { useDispatch } from "react-redux";
 import { setToken } from "../../../redux/auth/reducer";
+import { useLocation } from "react-router";
 
 const Login = () => {
   const dispatch = useDispatch();
+
+  const url = useLocation().search
+  const redirectToCart = new URLSearchParams(url).get('bag')
+
+  console.log(redirectToCart)
 
   const validate = values => {
     const errors = {};
@@ -29,23 +35,28 @@ const Login = () => {
     validate,
     onSubmit: async (values, { setSubmitting, setErrors }) => {
       try {
-          const response = await fetch("http://localhost:5000/api/auth/login", {
-            method: "POST",
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(values)
-          });
-          const { data, success } = await response.json();
-          if (!success) {
-            const errors = {};
-            errors.form = "email and password do not match or user does not exists";
-            setErrors(errors)
-            setSubmitting(false);
-          } else {
-            dispatch(setToken(data.token))
-            localStorage.setItem("token", data.token)
-          }
+          dispatch(setToken)
+          // const response = await fetch("http://localhost:5000/api/auth/login", {
+          //   method: "POST",
+          //   headers: {
+          //     'Content-Type': 'application/json'
+          //   },
+          //   body: JSON.stringify(values)
+          // });
+          
+          // if (!success) {
+          //   const errors = {};
+          //   errors.form = "email and password do not match or user does not exists";
+          //   setErrors(errors)
+          //   setSubmitting(false);
+          // } else {
+          //   console.log("hello")
+          //   console.log(data.token)
+          //   dispatch(setToken(data.token))
+          //   localStorage.setItem("token", data.token)
+          //   const redirectTo = redirectToCart ? "/bag" : "/"
+          //   window.location.assign(redirectTo);
+          // }
         } catch (error) {
           console.error(error.message)
         }

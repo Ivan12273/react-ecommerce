@@ -2,8 +2,11 @@ import Form from "../../Form/Form";
 import Input from "../../Input/Input";
 import Button from "../../Button/Button";
 import { useFormik } from "formik";
+import { useDispatch } from 'react-redux';
+import { setToken } from "../../../redux/auth/reducer";
 
 const Register = () => {
+  const dispatch = useDispatch();
   const validate = values => {
     const errors = {};
     if (!values.email && !values.password && !values.displayName && !values.passwordConfirmation) {
@@ -34,20 +37,21 @@ const Register = () => {
     },
     validate,
     onSubmit: async (values, { setSubmitting, setErrors }) => {
-      const response = await fetch("http://localhost:5000/api/auth", {
-        method: "POST",
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(values)
-      });
-      const data = await response.json();
-      console.log(data)
-      if (!data.success) {
-        const errors = {};
-        errors.form = "a user with this email already exists";
-        setErrors(errors)
-        setSubmitting(false);
+      try {
+        
+        const { data, success } = await response.json();
+
+        if (!success) {
+          const errors = {};
+          errors.form = "a user with this email already exists";
+          setErrors(errors)
+          setSubmitting(false);
+        } else {
+          dispatch(setToken(data.token))
+          window.location.assign("/");
+        }
+      } catch (error) {
+        console.error(error);
       }
     },
   });
