@@ -6,6 +6,7 @@ import Header from './components/Header/Header';
 import Login from './components/pages/Login/Login';
 import Register from './components/pages/Register/Register';
 import Cart from './components/pages/Cart/Cart';
+import Checkout from './components/pages/Checkout/Checkout';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
           <Route path="/login" exact={true} component={Login}/>
           <Route path="/register" exact={true} component={Register}/>
           <Route path="/cart/:id?" component={Cart} />
+          <Route path="/checkout" component={Checkout} />
         </main>
         <footer className="footer">
           All right reserved.
