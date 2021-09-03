@@ -1,42 +1,28 @@
 import './HomeStyles.css';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { listProducts } from '../../../redux/product/reducer';
 
-function Home () {
+function Home() {
 
-    const productList = useSelector(state => state.productList);
-    const { products, loading, error } = productList;
-    const dispatch = useDispatch();
+    const products = ['Hats', 'Jackets', 'Mens', 'Sneakers', 'Womens'];
 
-    useEffect(() => {
-      dispatch(listProducts());
-    }, []);
-
-    console.log(products);
-
-    return loading ? <div>Loading... </div> :
-    error ? <div>{error}</div> :
-    <ul className="products">
-      {
-         products.map(product =>
-          <li key={product.item_id}>
-            <div className="product">
-              <Link to={'/product/' + product.item_id}>
-                  <img className="product-image" src={product.imageUrl} alt="product" />
-              </Link>
-              <div className="product-name">
-                <Link to={'/product/' + product.item_id}>{product.name}</Link>
-              </div>
-              <div className="product-brand">{product.title}</div>
-              <div className="product-price">${product.price}</div>
-            </div>
-          </li>
-        )
-      }
-    </ul>
-
+    return ( 
+        <ul className="categories">
+            {
+            products.map(category => 
+            <li >
+                <div className="category">
+                    <Link to={'/category/' + category}>
+                        <img className="category-image" src='https://caminhoslanguages.com/blog/wp-content/uploads/2020/11/roupas-estoque-500x265-1.jpg' alt="category" />
+                        <div className="centered">{category}</div>
+                        <div className="overlay"></div>
+                    </Link>
+                </div>
+            </li>
+            )
+            }
+        </ul>
+    )
 }
 
 export default Home;
