@@ -7,8 +7,15 @@ import Header from './components/Header/Header';
 import Login from './components/pages/Login/Login';
 import Register from './components/pages/Register/Register';
 import Cart from './components/pages/Cart/Cart';
+import Checkout from './components/pages/Checkout/Checkout';
+import { useDispatch } from 'react-redux';
+import { setToken } from './redux/auth/reducer';
 
 function App() {
+  const dispatch = useDispatch();
+  const token = localStorage.getItem("token");
+  if (token) dispatch(setToken(token));
+
   return (
     <BrowserRouter>
       <Header />
@@ -20,6 +27,7 @@ function App() {
           <Route path="/login" exact={true} component={Login}/>
           <Route path="/register" exact={true} component={Register}/>
           <Route path="/cart/:id?" component={Cart} />
+          <Route path="/checkout" component={Checkout} />
         </main>
         <footer className="footer">
           All right reserved.

@@ -1,13 +1,18 @@
+import classNames from "classnames";
 import { 
   Input as InputStyles, 
   Label,
   InputContainer
 } from "./InputStyles"
 
-const Input = ({ id, name, type = "text", onChange, value, error }) => {
+const Input = ({ id, name, type = "text", onChange, value, error, small, right, left }) => {
   return (
     <>
-      <InputContainer>
+      <InputContainer className={classNames({
+        small,
+        right,
+        left
+      })}>
         <Label>{name}</Label>
         <InputStyles
           id={id}
@@ -15,7 +20,9 @@ const Input = ({ id, name, type = "text", onChange, value, error }) => {
           type={type}
           onChange={onChange}
           value={value}
-          className={error ? "error" : ""}
+          className={classNames({
+            error,
+          })}
         />
         {error ?
           <span className="error">{error}</span>

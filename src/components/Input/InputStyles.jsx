@@ -24,4 +24,24 @@ export const InputContainer = styled.div`
   .error {
     color: red;
   }
+  &.small {
+    width: calc(50% - 5px);
+  }
+  &.small.left {
+    margin-right: 5px;
+  }
+  &.small.right {
+    margin-left: 5px;
+  }
+  @media (max-width: 375px){
+    &.small {
+      width: 100%;
+    }
+    &.small.left {
+      margin-right: 0;
+    }
+    &.small.right {
+      margin-left: 0;
+    }
+  }
 `;

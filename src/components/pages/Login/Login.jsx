@@ -2,8 +2,12 @@ import { useFormik } from "formik";
 import Button from "../../Button/Button";
 import Form from "../../Form/Form";
 import Input from "../../Input/Input";
+import { useDispatch } from "react-redux";
+import { setToken } from "../../../redux/auth/reducer";
 
 const Login = () => {
+  const dispatch = useDispatch();
+
   const validate = values => {
     const errors = {};
     if (!values.email && !values.password) {
@@ -24,22 +28,28 @@ const Login = () => {
     },
     validate,
     onSubmit: async (values, { setSubmitting, setErrors }) => {
-      const response = await fetch("http://localhost:5000/api/auth/login", {
-        method: "POST",
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(values)
-      });
-      const data = await response.json();
-      console.log(data)
-      if (!data.success) {
-        const errors = {};
-        errors.form = "email and password do not match or user does not exists";
-        setErrors(errors)
-        setSubmitting(false);
+      try {
+          const response = await fetch("http://localhost:5000/api/auth/login", {
+            method: "POST",
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(values)
+          });
+          const { data, success } = await response.json();
+          if (!success) {
+            const errors = {};
+            errors.form = "email and password do not match or user does not exists";
+            setErrors(errors)
+            setSubmitting(false);
+          } else {
+            dispatch(setToken(data.token))
+            localStorage.setItem("token", data.token)
+          }
+        } catch (error) {
+          console.error(error.message)
+        }
       }
-    },
   });
   return(
     <Form title="Login" onSubmit={formik.handleSubmit} error={formik.errors.form}>
