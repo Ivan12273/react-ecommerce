@@ -38,8 +38,22 @@ const Register = () => {
     validate,
     onSubmit: async (values, { setSubmitting, setErrors }) => {
       try {
-        
-        const { data, success } = await response.json();
+        const response = await fetch("http://localhost:5000/api/auth", {
+          method: "POST",
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(values)
+        });
+        const data = await response.json();
+        console.log(data)
+        if (!data.success) {
+          const errors = {};
+          errors.form = "a user with this email already exists";
+          setErrors(errors)
+          setSubmitting(false);
+        }
+        const { result, success } = await response.json();
 
         if (!success) {
           const errors = {};
@@ -47,7 +61,7 @@ const Register = () => {
           setErrors(errors)
           setSubmitting(false);
         } else {
-          dispatch(setToken(data.token))
+          dispatch(setToken(result.token))
           window.location.assign("/");
         }
       } catch (error) {
