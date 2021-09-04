@@ -11,6 +11,10 @@ function CartItem(item) {
         dispatch(removeFromCart(id));
     }
 
+    const addMoreItemsToCart = (id, qty) => {
+        dispatch(addToCart({ id, qty }))
+    }
+    
     return (
         <li>
             <div className="cart-image">
@@ -26,7 +30,7 @@ function CartItem(item) {
                     Qty:
                     <select value={item.qty} 
                         onChange={(e) => 
-                            dispatch(addToCart(item.item_id, parseInt(e.target.value)))
+                            addMoreItemsToCart(item.item_id, parseInt(e.target.value))
                         }
                     >
                         <option value="1">1</option>
