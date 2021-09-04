@@ -1,5 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createAction, createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
     loading: true,
@@ -24,15 +23,7 @@ const productSlice = createSlice({
     }
 });
 
-export const { listRequest, listSuccess, listFail } = productSlice.actions;
-export const listProducts = () => async (dispatch) => {
-    try {
-        dispatch(listRequest());
-        const { data } = await axios.get('/api/store/collections');
-        dispatch(listSuccess(data.data));
-    } catch (error) {
-        dispatch(listFail(error.message));
-    }
-}
+export const listProducts = createAction("product/listProducts");
 
 export default productSlice.reducer;
+export const { listRequest, listSuccess, listFail } = productSlice.actions;

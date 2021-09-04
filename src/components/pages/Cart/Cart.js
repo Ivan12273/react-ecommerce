@@ -17,7 +17,7 @@ function Cart (props) {
     const dispatch = useDispatch();
     useEffect(() => {
         if(id) {
-            dispatch(addToCart(parseInt(id), qty));
+            dispatch(addToCart({ id, qty }));
         }
     }, []);
 

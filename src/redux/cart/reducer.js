@@ -1,5 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createAction, createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
     cartItems: [],
@@ -24,8 +23,13 @@ const cartSlice = createSlice({
     }
 });
 
+export const addToCart = createAction("cart/addToCart");
+export const removeFromCart = createAction("cart/removeFromCart");
+
+export default cartSlice.reducer;
 export const { addItem, removeItem } = cartSlice.actions;
 
+/*
 export const addToCart = (productId, qty) => async (dispatch) => {
     try {
         const { data } = await axios.get('/api/store/collections');
@@ -48,5 +52,4 @@ export const addToCart = (productId, qty) => async (dispatch) => {
 export const removeFromCart = (id) => (dispatch) => {
     dispatch(removeItem(id));
 }
-
-export default cartSlice.reducer;
+*/
