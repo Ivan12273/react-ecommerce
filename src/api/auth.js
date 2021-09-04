@@ -6,7 +6,7 @@ export async function login(credentials) {
     },
     body: JSON.stringify(credentials)
   });
-  return response;
+  return await response.json();
 }
 
 export async function register(userInfo) {
@@ -17,5 +17,5 @@ export async function register(userInfo) {
     },
     body: JSON.stringify(userInfo)
   });
-  return response;
+  return await response.json();
 }

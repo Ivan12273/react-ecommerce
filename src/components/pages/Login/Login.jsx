@@ -4,6 +4,7 @@ import Form from "../../Form/Form";
 import Input from "../../Input/Input";
 import { useDispatch } from "react-redux";
 import { setToken } from "../../../redux/auth/reducer";
+import { login } from "../../../api/auth";
 import { useLocation } from "react-router";
 
 const Login = () => {
@@ -11,8 +12,6 @@ const Login = () => {
 
   const url = useLocation().search
   const redirectToCart = new URLSearchParams(url).get('bag')
-
-  console.log(redirectToCart)
 
   const validate = values => {
     const errors = {};
@@ -35,32 +34,20 @@ const Login = () => {
     validate,
     onSubmit: async (values, { setSubmitting, setErrors }) => {
       try {
-          dispatch(setToken)
-          // const response = await fetch("http://localhost:5000/api/auth/login", {
-          //   method: "POST",
-          //   headers: {
-          //     'Content-Type': 'application/json'
-          //   },
-          //   body: JSON.stringify(values)
-          // });
-          
-          // if (!success) {
-          //   const errors = {};
-          //   errors.form = "email and password do not match or user does not exists";
-          //   setErrors(errors)
-          //   setSubmitting(false);
-          // } else {
-          //   console.log("hello")
-          //   console.log(data.token)
-          //   dispatch(setToken(data.token))
-          //   localStorage.setItem("token", data.token)
-          //   const redirectTo = redirectToCart ? "/bag" : "/"
-          //   window.location.assign(redirectTo);
-          // }
-        } catch (error) {
-          console.error(error.message)
+        const { success, data } = await login(values)
+        if (success) {
+          dispatch(setToken(data.token))
+          window.location.assign(redirectToCart ? "/bag" : "/")
+        } else {
+          const errors = {};
+          errors.form = "email and password do not match or user does not exists";
+          setErrors(errors)
+          setSubmitting(false);
         }
+      } catch (error) {
+        console.error(error.message)
       }
+    }
   });
   return(
     <Form title="Login" onSubmit={formik.handleSubmit} error={formik.errors.form}>
