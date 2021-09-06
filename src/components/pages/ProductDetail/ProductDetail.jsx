@@ -35,23 +35,21 @@ const ProductDetail = (props) => {
       {products.map((product) => {
         if (product.item_id === parseInt(id)) {
           return (
-            <>
-              <ProductDetailWrapper>
-                <ProductDetailImageWrapper>
-                  <ProductDetailImage src={product.imageUrl} alt={product.name} />
-                </ProductDetailImageWrapper>
-                <ProductDetailInfo>
-                  <ProductDetailInfoTextWrapper>
-                    <ProductDetailInfoTextH4>{product.title}</ProductDetailInfoTextH4>
-                    <ProductDetailInfoTextH1>{product.name}</ProductDetailInfoTextH1>
-                    <ProductDetailInfoTextH3>${product.price}</ProductDetailInfoTextH3>
-                  </ProductDetailInfoTextWrapper>
-                  <Button onClick={handleAddToCart}>
-                    Add To Bag
-                  </Button>
-                </ProductDetailInfo>
-              </ProductDetailWrapper>
-            </>
+            <ProductDetailWrapper key={product.item_id}>
+              <ProductDetailImageWrapper>
+                <ProductDetailImage src={product.imageUrl} alt={product.name} />
+              </ProductDetailImageWrapper>
+              <ProductDetailInfo>
+                <ProductDetailInfoTextWrapper>
+                  <ProductDetailInfoTextH4>{product.title}</ProductDetailInfoTextH4>
+                  <ProductDetailInfoTextH1>{product.name}</ProductDetailInfoTextH1>
+                  <ProductDetailInfoTextH3>${product.price}</ProductDetailInfoTextH3>
+                </ProductDetailInfoTextWrapper>
+                <Button onClick={handleAddToCart}>
+                  Add To Bag
+                </Button>
+              </ProductDetailInfo>
+            </ProductDetailWrapper>
           )
         }
         return ""

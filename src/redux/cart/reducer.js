@@ -10,7 +10,7 @@ const cartSlice = createSlice({
     reducers: {
         addItem(state, action) {
             const item = action.payload;
-            const product = state.cartItems.find(x => x.item_id === item.item_id);
+            const product = state.cartItems.find(x => x.item_id === parseInt(item.item_id));
             if (product) {
                 state.cartItems = state.cartItems.map(x => x.item_id === product.item_id ? {...product, qty: product.qty + item.qty} : x) 
             } else {

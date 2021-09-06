@@ -15,7 +15,7 @@ function Category () {
 
   useEffect(() => {
     dispatch(listProducts());
-  }, []);
+  }, [dispatch]);
 
   return loading ? <div>Loading... </div> :
   error ? <div>{error}</div> :
@@ -38,6 +38,7 @@ function Category () {
             </li>
             )
           }
+          return null;
       })
     }
   </ul>

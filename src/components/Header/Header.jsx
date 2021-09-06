@@ -13,7 +13,6 @@ const Header = () => {
 
   const handleMenuClick = (e) => {
     e.preventDefault();
-    console.log(!menuOpen)
     setMenuOpen(!menuOpen);
   }
 

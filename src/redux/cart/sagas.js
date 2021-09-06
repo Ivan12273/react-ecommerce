@@ -10,7 +10,7 @@ function* displayError(msg) {
 function* onAddToCart (action) {
     try {
         const data = yield call(getProducts);
-        const product = yield data.find(x => x.item_id == action.payload.id);
+        const product = yield data.find(x => x.item_id === parseInt(action.payload.id));
         const qty = yield action.payload.qty;
 
         yield put(addItem({
@@ -29,7 +29,7 @@ function* onAddToCart (action) {
             let itemOnDB;
             yield cartDB.items.get(id)
                 .then((item) => itemOnDB = item)
-                .catch((err) => console.log(err))
+                .catch((err) => console.error(err))
             if (itemOnDB) {
                 yield cartDB.items.update(id, {qty: itemOnDB.qty + quantity})
             } else {

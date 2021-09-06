@@ -10,7 +10,7 @@ function Home() {
         <ul className="categories">
             {
             products.map(category => 
-            <li >
+            <li key={category}>
                 <div className="category">
                     <Link to={'/category/' + category}>
                         <img className="category-image" src='https://caminhoslanguages.com/blog/wp-content/uploads/2020/11/roupas-estoque-500x265-1.jpg' alt="category" />

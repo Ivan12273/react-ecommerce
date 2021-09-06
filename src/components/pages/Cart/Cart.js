@@ -19,7 +19,7 @@ function Cart (props) {
         if(id) {
             dispatch(addToCart({ id, qty }));
         }
-    }, []);
+    }, [dispatch, id, qty]);
 
     return <div className="cart">
         <div className="cart-list">
