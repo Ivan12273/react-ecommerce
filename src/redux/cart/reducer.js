@@ -20,6 +20,9 @@ const cartSlice = createSlice({
         removeItem(state, action) {
             state.cartItems = state.cartItems.filter(x => x.item_id !== action.payload);
         },
+        removeAll(state) {
+            state.cartItems = [];
+        }
     }
 });
 
@@ -27,7 +30,7 @@ export const addToCart = createAction("cart/addToCart");
 export const removeFromCart = createAction("cart/removeFromCart");
 
 export default cartSlice.reducer;
-export const { addItem, removeItem } = cartSlice.actions;
+export const { addItem, removeItem, removeAll } = cartSlice.actions;
 
 /*
 export const addToCart = (productId, qty) => async (dispatch) => {

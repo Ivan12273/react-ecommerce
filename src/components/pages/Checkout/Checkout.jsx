@@ -4,9 +4,12 @@ import Input from "../../Input/Input";
 import { Wrapper } from "./CheckoutStyles";
 import Button from '../../Button/Button';
 import withAuth from "../../../hocs/withAuth";
+import { useDispatch } from "react-redux";
+import { removeAll } from "../../../redux/cart/reducer";
 
 
 const Checkout = () => {
+  const dispatch = useDispatch();
   const validate = values => {
     const errors = {};
     if (!values.email && !values.password) {
@@ -31,6 +34,11 @@ const Checkout = () => {
       
     },
   });
+
+  const handleCheckout = (e) => {
+    e.preventDefault();
+    dispatch(removeAll());
+  }
   return (
     <>
       <Form>
@@ -62,7 +70,7 @@ const Checkout = () => {
             right={true}
           />
         </Wrapper>
-        <Button>
+        <Button onClick={handleCheckout}>
           Checkout!
         </Button>
       </Form>

@@ -13,6 +13,7 @@ import { setToken } from './redux/auth/reducer';
 import { useEffect } from 'react';
 import cartDB from "./db/cartDB";
 import { addToCart } from './redux/cart/reducer';
+import PaymentConfirmation from './components/pages/PaymentConfirmation/PaymentConfirmation';
 
 function App() {
   const dispatch = useDispatch();
@@ -44,6 +45,7 @@ function App() {
           <Route path="/register" exact={true} component={Register}/>
           <Route path="/bag/:id?" component={Cart} />
           <Route path="/checkout" component={Checkout} />
+          <Route path="/payment-confirmation" exact={true} component={PaymentConfirmation} />
         </main>
         <footer className="footer">
           All right reserved.

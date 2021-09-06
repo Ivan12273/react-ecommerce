@@ -1,6 +1,6 @@
 import { getProducts } from '../../api/product';
 import { call, takeLatest, takeEvery, put, spawn } from "redux-saga/effects";
-import { addItem, removeItem, addToCart, removeFromCart } from "../cart/reducer";
+import { addItem, removeItem, addToCart, removeFromCart, removeAll } from "../cart/reducer";
 import cartDB from "../../db/cartDB";
 
 function* displayError(msg) {
@@ -49,9 +49,15 @@ function* onRemoveFromCart(action) {
     yield cartDB.items.delete(action.payload);
 }
 
+function* onRemoveAll() {
+    yield cartDB.items.clear();
+    yield window.location.assign("/payment-confirmation");
+}
+
 function* listenActions() {
     yield takeEvery(addToCart, onAddToCart);
     yield takeLatest(removeFromCart, onRemoveFromCart);
+    yield takeLatest(removeAll, onRemoveAll);
 }
   
 function* cartSaga() {
