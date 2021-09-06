@@ -3,6 +3,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import Home from './components/pages/Home/Home';
 import Category from './components/pages/Category/Category';
 import ProductDetail from './components/pages/ProductDetail/ProductDetail';
+import Directory from './components/pages/Directory/Directory';
 import Header from './components/Header/Header';
 import Login from './components/pages/Login/Login';
 import Register from './components/pages/Register/Register';
@@ -41,6 +42,7 @@ function App() {
           <Route path="/" exact={true} component={Home}/>
           <Route path="/category/:category" exact={true} component={Category}/>
           <Route path="/product/:id" exact={true} component={ProductDetail}/>
+          <Route path="/directory" exact={true} component={Directory}/>
           <Route path="/login" exact={true} component={Login}/>
           <Route path="/register" exact={true} component={Register}/>
           <Route path="/bag/:id?" component={Cart} />

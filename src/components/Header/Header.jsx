@@ -29,8 +29,7 @@ const Header = () => {
     <Menu className={menuOpen ? "open" : ""}>
       <div>
         <Link to="/">Home</Link>
-        <Link to="/">Category</Link>
-        <Link to="/">Directory</Link>
+        <Link to="/directory">Directory</Link>
       </div>
       <div className="header-links">
         <Link to="/bag">
