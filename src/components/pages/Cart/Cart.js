@@ -13,8 +13,8 @@ function Cart (props) {
 
     const { id } = useParams();
     const qty = props.location.search ? Number(props.location.search.split('=')[1]) : 1;
-
     const dispatch = useDispatch();
+
     useEffect(() => {
         if(id) {
             dispatch(addToCart({ id, qty }));
@@ -24,10 +24,7 @@ function Cart (props) {
     return <div className="cart">
         <div className="cart-list">
             <ul className="cart-list-container">
-                <li>
-                    <h3>Shopping Cart</h3>
-                    <div>Price</div>
-                </li>
+                <h1 className="cart-title">Shopping Cart</h1>
                 {cartItems.length === 0 ? 
                     <div>Cart is empty</div>
                     :
