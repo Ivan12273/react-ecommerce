@@ -32,7 +32,7 @@ function Cart (props) {
                     <div>Cart is empty</div>
                     :
                     cartItems.map( item => {
-                        return <CartItem key={item.item_id} {...item} />;
+                        return <CartItem key={item.item_id} item={item} />;
                     })
                 }
             </ul>

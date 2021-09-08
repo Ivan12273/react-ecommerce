@@ -5,15 +5,28 @@ import {
   HamburguerMenuButton,
 } from "./HeaderStyles";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars, faShoppingBag, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faBars, faShoppingBag } from '@fortawesome/free-solid-svg-icons'
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import CartPreview from "../CartPreview/CartPreview";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const token = useSelector((state) => state.auth.token);
+  const [hidePreview, setHidePreview] = useState(true);
 
   const handleMenuClick = (e) => {
     e.preventDefault();
     setMenuOpen(!menuOpen);
+  }
+
+  const handleActivatePreview = () => {
+    // console.log(hidePreview)
+    setHidePreview(false);
+  }
+
+  const handleDeactivatePreview = () => {
+    setHidePreview(true);
   }
 
   return (
@@ -33,14 +46,22 @@ const Header = () => {
         <Link to="/">Directory</Link>
       </div>
       <div className="header-links">
-        <Link to="/bag">
-          <span className="link-title">My Bag {" "}</span>
-          <FontAwesomeIcon icon={faShoppingBag} className="icon" />
-        </Link>
-        <Link to="/">
-        <span className="link-title">My Profile {" "}</span>
-        <FontAwesomeIcon icon={faUser} className="icon" />
-        </Link>
+        {token ?
+          <div>
+            <Link className="button danger">Sign Out</Link>
+          </div>
+          : <div className="auth">
+            <Link to="/login" className="button left">Login</Link>
+            <Link to="/register" className="button right">Register</Link>
+          </div>
+        }
+        <div className="cart" onMouseOver={handleActivatePreview} onMouseLeave={handleDeactivatePreview}>
+          <Link to="/bag">
+            <span className="link-title">My Bag</span>
+            <FontAwesomeIcon icon={faShoppingBag} className="icon" />
+          </Link>
+          <CartPreview hide={hidePreview} />
+        </div>
       </div>
     </Menu>
   </HeaderStyles>

@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom'
 import { addToCart, removeFromCart } from '../../redux/cart/reducer';
 
-function CartItem(item) {
+function CartItem({ item }) {
 
     const dispatch = useDispatch();
     const removeFromCartHandler = (id) => {

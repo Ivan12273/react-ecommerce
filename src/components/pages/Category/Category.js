@@ -29,11 +29,13 @@ function Category () {
                 <Link to={'/product/' + product.item_id}>
                     <img className="product-image" src={product.imageUrl} alt="product" />
                 </Link>
-                <div className="product-name">
-                  <Link to={'/product/' + product.item_id}>{product.name}</Link>
+                <div className="product-info">
+                  <div className="product-name">
+                    <Link to={'/product/' + product.item_id}>{product.name}</Link>
+                  </div>
+                  <div className="product-brand">{product.title}</div>
+                  <div className="product-price">${product.price}</div>
                 </div>
-                <div className="product-brand">{product.title}</div>
-                <div className="product-price">${product.price}</div>
               </div>
             </li>
             )
