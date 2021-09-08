@@ -4,18 +4,20 @@ export const Header = styled.header`
   display: flex;
   align-items: center;
   padding: 1.5rem;
-  /* position: relative; */
   a {
     text-decoration: none;
     color: #000000;
-    margin-left: 1.5rem;
+    margin-left: 15px;
     font-size: 1.5rem
   }
   .brand {
     width: 100%;
   }
+  .brand a {
+    margin-left: 0;
+  }
   .hamburguer-menu-wrapper {
-    width: 20%;
+    min-width: max-content;
   }
   .hamburguer-menu-wrapper .brand a.logo {
     font-size: 2.5rem;
@@ -24,25 +26,15 @@ export const Header = styled.header`
   a {
     margin-top: 0;
   }
-  @media (max-width: 1015px) {
-    .hamburguer-menu-wrapper {
-      width: 25%;
-    }
-  }
-  @media (max-width: 870px) {
-    .hamburguer-menu-wrapper {
-      width: 30%;
-    }
-  }
   @media (max-width: 769px) {
     flex-direction: column;
-
     .hamburguer-menu-wrapper {
       display: flex;
       width: 100%;
     }
     a {
       font-size: 2rem;
+      margin-left: 0;
       margin-top: 10px;
     }
   }
@@ -110,6 +102,9 @@ export const Menu = styled.div`
     align-items: start;
     width: 100%;
     display: none;
+    .header-links {
+      align-items: start;
+    }
     .header-links a {
       font-size: 2rem;
     }
@@ -120,21 +115,9 @@ export const Menu = styled.div`
       background: none;
       color: black;
       font-size: 2rem;
-      margin: 10px 0 0 15px;
+      margin: 10px 0 0 0;
       padding: 0;
     }
-    /* .header-links a.button.right:hover {
-      background: black;
-      color: white;
-    } */
-    /* .header-links a.button.danger {
-      color: red;
-      border: 1px solid red;
-    } */
-    /* .header-links a.button.danger:hover {
-      background: red;
-      color: white;
-    } */
     &.open {
       display: inherit;
     }
