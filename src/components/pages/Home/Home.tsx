@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom';
 
 function Home() {
 
-    const products = ['Hats', 'Jackets', 'Mens', 'Sneakers', 'Womens'];
+    const products: Array<string> = ['Hats', 'Jackets', 'Mens', 'Sneakers', 'Womens'];
 
     return ( 
         <ul className="categories">
             {
-            products.map(category => 
+            products.map((category: string) =>
             <li key={category}>
                 <div className="category">
                     <Link to={'/category/' + category}>
