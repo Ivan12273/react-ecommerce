@@ -5,6 +5,7 @@ import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { listProducts } from '../../../redux/product/reducer';
 import ItemCard from '../../ItemCard/ItemCard';
 import { CategoryItem } from '../../../types/CategoryItem';
+import { ProductType } from '../../../TypeScript/products/types';
 
 function Category () {
 
@@ -22,7 +23,7 @@ function Category () {
   error ? <div>{error}</div> :
   <ul className="products">
     {
-      products.map((product: { title: string; }) => {
+      products.map((product: ProductType) => {
         if (product.title === category) {
           return (
               <ItemCard item={product} />
