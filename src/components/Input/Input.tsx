@@ -8,13 +8,13 @@ import {
 interface Props {
   id: string;
   name: string;
-  type: string | undefined;
+  type?: string | undefined;
   onChange: (e: React.ChangeEvent<any>) => void;
   value: string | number;
-  error: string | undefined;
-  small: boolean | undefined;
-  right: boolean | undefined;
-  left: boolean | undefined;
+  error?: string | undefined;
+  small?: boolean | undefined;
+  right?: boolean | undefined;
+  left?: boolean | undefined;
 }
 
 const Input = (

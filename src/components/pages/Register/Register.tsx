@@ -1,16 +1,24 @@
 import Form from "../../Form/Form";
 import Input from "../../Input/Input";
 import Button from "../../Button/Button";
-import { useFormik } from "formik";
+import { FormikErrors, useFormik } from "formik";
 import { register } from "../../../api/auth";
 import { useDispatch } from "react-redux";
 import { setToken } from "../../../redux/auth/reducer";
 
+interface Fields {
+  email: string;
+  password: string;
+  displayName: string;
+  passwordConfirmation: string;
+  form?: string | null;
+}
+
 const Register = () => {
   const dispatch = useDispatch();
 
-  const validate = values => {
-    const errors = {};
+  const validate = (values: Fields) => {
+    const errors: FormikErrors<Fields> = {};
     if (!values.email && !values.password && !values.displayName && !values.passwordConfirmation) {
       errors.email = 'Email is required';
       errors.password = 'Password is required';
@@ -45,7 +53,7 @@ const Register = () => {
           dispatch(setToken(data.token))
           window.location.assign("/")
         } else {
-          const errors = {};
+          const errors: FormikErrors<Fields> = {};
           errors.form = "a user with this email already exists";
           setErrors(errors)
           setSubmitting(false);
