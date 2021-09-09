@@ -12,8 +12,8 @@ type Props = {
 function CartItem({ item }: Props) {
 
     const dispatch = useDispatch();
-    const removeFromCartHandler = (id: number) => {
-        dispatch(removeFromCart({id}));
+    const removeFromCartHandler = (id: number | string) => {
+        dispatch(removeFromCart(id));
     }
 
     const addMoreItemsToCart = (id: number, qty: number) => {
