@@ -13,26 +13,34 @@ import {
   ProductDetailInfoTextH3,
   ProductDetailInfoTextH4,
 } from './ProductDetailStyles';
+import { RootState } from "../../../redux/rootReducer";
 
-const ProductDetail = (props) => {
-  const productList = useSelector(state => state.productList);
+const ProductDetail = () => {
+  const productList = useSelector((state: RootState) => state.productList);
   const { products, loading, error } = productList;
   const dispatch = useDispatch();
-  const { id } = useParams()
+  const { id }: { id: string } = useParams();
 
   useEffect(() => {
     dispatch(listProducts());
   }, [dispatch]);
 
   const handleAddToCart = () => {
-    props.history.push('/bag/' + id + '?qty=' + 1)
+    window.location.assign('/bag/' + id + '?qty=' + 1)
   }
 
   return loading ?
     <div>Loading...</div> :
     error ? <div>{error}</div> :
     <>
-      {products.map((product) => {
+      {products.map((product: {
+        col_id: number;
+        title: string;
+        item_id: number;
+        name: string;
+        price: number;
+        imageUrl: string;
+      }) => {
         if (product.item_id === parseInt(id)) {
           return (
             <ProductDetailWrapper key={product.item_id}>
