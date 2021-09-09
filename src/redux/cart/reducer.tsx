@@ -27,7 +27,7 @@ const cartSlice = createSlice({
     }
 });
 
-export const addToCart = createAction<{ id: string; qty: number; doNotSave?: boolean; }>("cart/addToCart");
+export const addToCart = createAction<{ id: string | number; qty?: number; doNotSave?: boolean; }>("cart/addToCart");
 export const removeFromCart = createAction("cart/removeFromCart");
 
 export default cartSlice.reducer;
