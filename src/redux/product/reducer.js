@@ -3,6 +3,7 @@ import { createAction, createSlice } from '@reduxjs/toolkit';
 const initialState = {
     loading: true,
     products: [],
+    error: false,
 }
 
 const productSlice = createSlice({
