@@ -1,6 +1,18 @@
-import { CartPreviewItemH1, CartPreviewItemImage, CartPreviewItemInfoWrapper, CartPreviewItemP, CartPreviewItemSpan, CartPreviewItemWrapper } from "./CartPreviewItemStyles";
+import {
+  CartPreviewItemH1,
+  CartPreviewItemImage,
+  CartPreviewItemInfoWrapper,
+  CartPreviewItemP,
+  CartPreviewItemSpan,
+  CartPreviewItemWrapper
+} from "./CartPreviewItemStyles";
+import { ProductType } from "../../TypeScript/products/types";
 
-const CartPreviewItem = ({ item }) => {
+interface Props {
+  item: ProductType
+}
+
+const CartPreviewItem = ({ item }: Props) => {
   return (
     <CartPreviewItemWrapper>
       <CartPreviewItemImage src={item.imageUrl} alt={item.name} />
