@@ -1,4 +1,4 @@
-import { useFormik } from "formik";
+import { FormikErrors, FormikProps, useFormik } from "formik";
 import Button from "../../Button/Button";
 import Form from "../../Form/Form";
 import Input from "../../Input/Input";
@@ -7,14 +7,19 @@ import { setToken } from "../../../redux/auth/reducer";
 import { login } from "../../../api/auth";
 import { useLocation } from "react-router";
 
+interface Fields {
+  email: string;
+  password: string;
+  form: string | null;
+}
 const Login = () => {
   const dispatch = useDispatch();
 
   const url = useLocation().search
   const redirectToCart = new URLSearchParams(url).get('bag')
 
-  const validate = values => {
-    const errors = {};
+  const validate = (values: Fields) => {
+    const errors: FormikErrors<Fields> = {};
     if (!values.email && !values.password) {
       errors.email = 'Email is required';
       errors.password = 'Password is required';
@@ -29,22 +34,24 @@ const Login = () => {
   const formik = useFormik({
     initialValues: {
       email: '',
-      password: ''
+      password: '',
+      form: ''
     },
     validate,
     onSubmit: async (values, { setSubmitting, setErrors }) => {
       try {
+        console.log("helle")
         const { success, data } = await login(values)
         if (success) {
           dispatch(setToken(data.token))
           window.location.assign(redirectToCart ? "/bag" : "/")
         } else {
-          const errors = {};
+          const errors: FormikErrors<Fields> = {}
           errors.form = "email and password do not match or user does not exists";
           setErrors(errors)
           setSubmitting(false);
         }
-      } catch (error) {
+      } catch (error: any) {
         console.error(error.message)
       }
     }
@@ -57,6 +64,10 @@ const Login = () => {
         onChange={formik.handleChange}
         value={formik.values.email}
         error={formik.errors.email}
+        type="text"
+        small={false}
+        right={false}
+        left={false}
       />
       <Input
         id="password"
@@ -65,8 +76,11 @@ const Login = () => {
         onChange={formik.handleChange}
         value={formik.values.password}
         error={formik.errors.password}
+        small={false}
+        right={false}
+        left={false}
       />
-      <Button>Login!</Button>
+      <Button type="submit">Login!</Button>
     </Form>
   )
 };
