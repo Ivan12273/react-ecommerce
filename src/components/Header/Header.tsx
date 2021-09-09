@@ -6,16 +6,20 @@ import {
 } from "./HeaderStyles";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faShoppingBag } from '@fortawesome/free-solid-svg-icons'
-import { useState } from "react";
-import { useSelector } from "react-redux";
+import { MouseEvent, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import CartPreview from "../CartPreview/CartPreview";
+import { RootState } from "../../redux/rootReducer";
+import { removeToken } from "../../redux/auth/reducer";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const token = useSelector((state) => state.auth.token);
+  const token = useSelector((state: RootState) => state.auth.token);
   const [hidePreview, setHidePreview] = useState(true);
 
-  const handleMenuClick = (e) => {
+  const dispatch = useDispatch()
+
+  const handleMenuClick = (e: MouseEvent) => {
     e.preventDefault();
     setMenuOpen(!menuOpen);
   }
@@ -27,6 +31,10 @@ const Header = () => {
 
   const handleDeactivatePreview = () => {
     setHidePreview(true);
+  }
+
+  const handleSignOut = () => {
+    dispatch(removeToken())
   }
 
   return (
@@ -47,7 +55,7 @@ const Header = () => {
       <div className="header-links">
         {token ?
           <div>
-            <Link className="button danger">Sign Out</Link>
+            <button className="button danger" onClick={handleSignOut}>Sign Out</button>
           </div>
           : <div className="auth">
             <Link to="/login" className="button left">Login</Link>

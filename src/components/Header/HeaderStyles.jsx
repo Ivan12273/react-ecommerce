@@ -66,7 +66,7 @@ export const Menu = styled.div`
   .header-links a .link-title {
     display: none;
   }
-  .header-links a.button {
+  .header-links a.button, button.button {
     font-size: 1.5rem;
     padding: 5px 15px;
     border-radius: 7px;
@@ -89,11 +89,12 @@ export const Menu = styled.div`
     background: black;
     color: white;
   }
-  .header-links a.button.danger {
+  .header-links .button.danger {
     color: red;
     border: 1px solid red;
+    background: none;
   }
-  .header-links a.button.danger:hover {
+  .header-links .button.danger:hover {
     background: red;
     color: white;
   }
