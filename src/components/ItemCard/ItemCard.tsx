@@ -1,7 +1,12 @@
 import { Link } from "react-router-dom";
+import { ProductType } from "../../TypeScript/products/types";
 import "./ItemCard.css";
 
-const ItemCard = ({ item }) => {
+interface Props {
+  item: ProductType
+}
+
+const ItemCard = ({ item }: Props) => {
   return (
     <>
       <li key={item.item_id}>
