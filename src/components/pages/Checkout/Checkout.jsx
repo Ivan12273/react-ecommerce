@@ -10,15 +10,17 @@ import { removeAll } from "../../../redux/cart/reducer";
 
 const Checkout = () => {
   const dispatch = useDispatch();
+
   const validate = values => {
     const errors = {};
-    if (!values.email && !values.password) {
-      errors.email = 'Email is required';
-      errors.password = 'Password is required';
-    } else if (!values.email) {
-      errors.email = 'Email is required';
-    } else if (!values.password) {
-      errors.password = 'Password is required';
+    if (!values.expirationDate) {
+      errors.expirationDate = 'Expiration date is required';
+    }
+    if (!values.cardNumber) {
+      errors.cardNumber = 'Card number is required';
+    } 
+    if (!values.securityCode) {
+      errors.securityCode = 'Security code is required';
     }
     return errors;
   };
@@ -30,18 +32,18 @@ const Checkout = () => {
       securityCode: '',
     },
     validate,
-    onSubmit: async (values, { setSubmitting, setErrors }) => {
-      
+    onSubmit: () => {
+      try {
+        dispatch(removeAll());
+      } catch (e) {
+        console.error(e)
+      }
     },
   });
 
-  const handleCheckout = (e) => {
-    e.preventDefault();
-    dispatch(removeAll());
-  }
   return (
     <>
-      <Form>
+      <Form onSubmit={formik.handleSubmit} >
         <Input
           name="Card Number"
           id="cardNumber"
@@ -70,7 +72,7 @@ const Checkout = () => {
             right={true}
           />
         </Wrapper>
-        <Button onClick={handleCheckout}>
+        <Button >
           Checkout!
         </Button>
       </Form>
