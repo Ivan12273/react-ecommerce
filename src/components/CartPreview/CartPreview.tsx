@@ -2,9 +2,14 @@
 import { useSelector } from "react-redux";
 import { BagLink, CartPreviewH2, CartPreviewWrapper } from "./CartPreviewStyles";
 import CartPreviewItem from "../CartPreviewItem/CartPreviewItem";
+import { RootState } from "../../redux/rootReducer";
 
-const CartPreview = ({ hide }) => {
-  const cartItems = useSelector((state) => state.cart.cartItems)
+interface Props {
+  hide: boolean;
+}
+
+const CartPreview = ({ hide }: Props) => {
+  const cartItems = useSelector((state: RootState) => state.cart.cartItems)
   return (
     <CartPreviewWrapper className={hide ? "hide" : ""}>
       {
