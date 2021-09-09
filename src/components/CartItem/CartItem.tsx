@@ -1,38 +1,42 @@
 import './CartItemStyles.css';
-import React from 'react'
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom'
 import { addToCart, removeFromCart } from '../../redux/cart/reducer';
 import Button from "../Button/Button";
+import { Product } from '../../types/Product';
 
-function CartItem({ item }) {
+type Props = {
+    item: Product
+}
+
+function CartItem({ item }: Props) {
 
     const dispatch = useDispatch();
-    const removeFromCartHandler = (id) => {
-        dispatch(removeFromCart(id));
+    const removeFromCartHandler = (id: number) => {
+        dispatch(removeFromCart({id}));
     }
 
-    const addMoreItemsToCart = (id, qty) => {
+    const addMoreItemsToCart = (id: number, qty: number) => {
         dispatch(addToCart({ id, qty }))
     }
     
     return (
         <li className="cart-item-wrapper">
-            <img className="cart-item-image" src={item.imageUrl} alt="product" />
+            <img className="cart-item-image" src={item?.imageUrl} alt="product" />
             <div className="cart-item-info-button">
                 <div className="cart-item-info">
                     <div className="">
-                        <Link to={"/product/" + item.item_id}>
+                        <Link to={"/product/" + item?.item_id}>
                             <h3 className="cart-item-name">
-                                {item.name}
+                                {item?.name}
                             </h3>
                         </Link>
                         <span>
                             Quantity:{" "}
                         </span>
-                        <select value={item.qty}
+                        <select value={item?.qty}
                             onChange={(e) => 
-                                addMoreItemsToCart(item.item_id, parseInt(e.target.value) - item.qty)
+                                addMoreItemsToCart(item!.item_id, parseInt(e.target.value) - item!.qty)
                             }
                         >
                             <option value={1}>1</option>
@@ -48,10 +52,10 @@ function CartItem({ item }) {
                         </select>
                     </div>
                     <div className="cart-price">
-                        <p>${item.price}</p>
+                        <p>${item?.price}</p>
                     </div>
                 </div>
-                <Button onClick={() => removeFromCartHandler(item.item_id)}>
+                <Button onClick={() => removeFromCartHandler(item!.item_id)}>
                     Delete
                 </Button>
             </div>
