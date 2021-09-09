@@ -14,8 +14,6 @@ function Category () {
 
   const { category } = useParams<CategoryItem>();
 
-  console.log(category);
-
   useEffect(() => {
     dispatch(listProducts());
   }, [dispatch]);

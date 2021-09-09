@@ -1,17 +1,20 @@
 import './CartStyles.css';
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { useParams } from "react-router-dom";
 import { addToCart } from '../../../redux/cart/reducer';
 import CartItem from '../../CartItem/CartItem';
 import CartSubtotal from '../../CartSubtotal/CartSubtotal';
+import { LocationProps } from '../../../types/LocationProps';
+import { ItemParam } from '../../../types/ItemParam';
+import { Product } from '../../../types/Product';
 
-function Cart (props) {
+function Cart (props: LocationProps) {
 
-    const cart = useSelector(state => state.cart);
+    const cart = useSelector((state: RootStateOrAny) => state.cart);
     const { cartItems } = cart;
 
-    const { id } = useParams();
+    const { id } = useParams<ItemParam>();
     const qty = props.location.search ? Number(props.location.search.split('=')[1]) : 1;
     const dispatch = useDispatch();
 
@@ -28,8 +31,8 @@ function Cart (props) {
                 {cartItems.length === 0 ? 
                     <div>Cart is empty</div>
                     :
-                    cartItems.map( item => {
-                        return <CartItem key={item.item_id} item={item} />;
+                    cartItems.map( (item: Product) => {
+                        return <CartItem key={item?.item_id} item={item} />;
                     })
                 }
             </ul>
