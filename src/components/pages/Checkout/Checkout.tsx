@@ -1,5 +1,5 @@
 import Form from "../../Form/Form";
-import { useFormik } from "formik";
+import { FormikErrors, useFormik } from "formik";
 import Input from "../../Input/Input";
 import { Wrapper } from "./CheckoutStyles";
 import Button from '../../Button/Button';
@@ -8,11 +8,17 @@ import { useDispatch } from "react-redux";
 import { removeAll } from "../../../redux/cart/reducer";
 
 
+interface Fields {
+  expirationDate: string;
+  cardNumber: string;
+  securityCode: string;
+}
+
 const Checkout = () => {
   const dispatch = useDispatch();
 
-  const validate = values => {
-    const errors = {};
+  const validate = (values: Fields) => {
+    const errors: FormikErrors<Fields> = {};
     if (!values.expirationDate) {
       errors.expirationDate = 'Expiration date is required';
     }
@@ -43,7 +49,7 @@ const Checkout = () => {
 
   return (
     <>
-      <Form onSubmit={formik.handleSubmit} >
+      <Form title="Checkout" onSubmit={formik.handleSubmit} >
         <Input
           name="Card Number"
           id="cardNumber"

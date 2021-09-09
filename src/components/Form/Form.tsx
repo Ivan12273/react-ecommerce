@@ -4,7 +4,14 @@ import {
   FormH1
 } from "./FormStyles";
 
-const Form = ({children, title, onSubmit, error}) => {
+interface Props {
+  children: React.ReactNode;
+  title: string;
+  onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
+  error?: string;
+}
+
+const Form = ({ children, title, onSubmit, error }: Props) => {
   return (
     <FormWrapper>
       <FormStyles onSubmit={onSubmit}>
