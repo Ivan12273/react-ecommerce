@@ -1,7 +1,7 @@
 import { removeToken, setToken } from './reducer';
 import { takeLatest, spawn } from 'redux-saga/effects'
 
-function* onSetToken(action) {
+function* onSetToken(action: { payload: string }) {
   yield window.localStorage.setItem("token", action.payload);
 }
 

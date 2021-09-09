@@ -4,14 +4,18 @@ const initialState = {
   token: null,
 }
 
+interface State {
+  token: null | string
+}
+
 const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    setToken(state, action) {
+    setToken(state: State, action: { payload: string }) {
       state.token = action.payload;
     },
-    removeToken (state) {
+    removeToken (state: State) {
       state.token = null;
     }
   }

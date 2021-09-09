@@ -5,7 +5,31 @@ import {
   InputContainer
 } from "./InputStyles"
 
-const Input = ({ id, name, type = "text", onChange, value, error, small, right, left }) => {
+interface Props {
+  id: string;
+  name: string;
+  type: string | undefined;
+  onChange: (e: React.ChangeEvent<any>) => void;
+  value: string | number;
+  error: string | undefined;
+  small: boolean | undefined;
+  right: boolean | undefined;
+  left: boolean | undefined;
+}
+
+const Input = (
+  {
+    id,
+    name,
+    type = "text",
+    onChange,
+    value,
+    error,
+    small,
+    right,
+    left
+  }: Props
+) => {
   return (
     <>
       <InputContainer className={classNames({
