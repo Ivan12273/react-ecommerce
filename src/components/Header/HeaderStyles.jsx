@@ -111,7 +111,7 @@ export const Menu = styled.div`
     }
     .header-links a.button.right,
     .header-links a.button.left,
-    .header-links a.button.danger {
+    .header-links .button.danger {
       border: none;
       background: none;
       color: black;
