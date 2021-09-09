@@ -1,11 +1,12 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { listProducts } from '../../../redux/product/reducer';
+import { ProductType } from '../../../TypeScript/products/types';
 import ItemCard from '../../ItemCard/ItemCard';
 
 function Directory() {
 
-    const productList = useSelector(state => state.productList);
+    const productList = useSelector((state: RootStateOrAny) => state.productList);
     const { products, loading, error } = productList;
     const dispatch = useDispatch();
 
@@ -20,7 +21,7 @@ function Directory() {
     error ? <div>{error}</div> :
     <ul className="products">
         {
-        products.map((product) => {
+        products.map((product: ProductType) => {
             if (counter < 5) {
             currentCol = product.col_id 
             counter = counter + 1
