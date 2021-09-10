@@ -2,7 +2,6 @@ import { getProducts } from '../../api/product';
 import { call, takeLatest, takeEvery, put, spawn } from "redux-saga/effects";
 import { addItem, removeItem, addToCart, removeFromCart, removeAll } from "./reducer";
 import cartDB from "../../db/cartDB";
-import { IndexableType } from 'dexie';
 import { Product } from '../../types/Product';
 
 function* displayError(msg: string) {
