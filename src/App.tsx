@@ -23,8 +23,8 @@ function App() {
   useEffect(() => {
     if (token) dispatch(setToken(token));
     const addItemsToCart = async () => {
-      const items = [];
-      await cartDB.items.each((item) => {
+      const items: any[] = [];
+      await cartDB.table('items').each((item) => {
         items.push(item);
       })
       for (let item in items) {
