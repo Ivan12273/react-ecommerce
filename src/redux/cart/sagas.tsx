@@ -1,16 +1,18 @@
 import { getProducts } from '../../api/product';
 import { call, takeLatest, takeEvery, put, spawn } from "redux-saga/effects";
-import { addItem, removeItem, addToCart, removeFromCart, removeAll } from "../cart/reducer";
+import { addItem, removeItem, addToCart, removeFromCart, removeAll } from "./reducer";
 import cartDB from "../../db/cartDB";
+import { IndexableType } from 'dexie';
+import { Product } from '../../types/Product';
 
-function* displayError(msg) {
+function* displayError(msg: string) {
     yield call(console.error, msg);
 }
 
-function* onAddToCart (action) {
+function* onAddToCart (action: { payload: { id: string | number; qty?: number; doNotSave?: boolean; }; }): any {
     try {
         const data = yield call(getProducts);
-        const product = yield data.find(x => x.item_id === parseInt(action.payload.id));
+        const product = yield data.find((x: { item_id: string; }) => x.item_id == action.payload.id);
         const qty = yield action.payload.qty;
 
         yield put(addItem({
@@ -24,33 +26,34 @@ function* onAddToCart (action) {
         }));
 
         if (!action.payload.doNotSave) {
-            const id = parseInt(action.payload.id);
-            const quantity = action.payload.qty;
-            let itemOnDB;
-            yield cartDB.items.get(id)
+            const id = action.payload.id.toString();
+            const quantity = action.payload.qty || 0;
+            let itemOnDB: Product;
+            yield cartDB.table('items').get(id)
                 .then((item) => itemOnDB = item)
                 .catch((err) => console.error(err))
             if (itemOnDB) {
-                yield cartDB.items.update(id, {qty: itemOnDB.qty + quantity})
+                console.log(itemOnDB);
+                yield cartDB.table('items').update(id, {qty: itemOnDB.qty + quantity})
             } else {
-                yield cartDB.items.add({
+                yield cartDB.table('items').add({
                     id,
                     qty: quantity,
                 })
             }
         }
-    } catch (error) {
+    } catch (error: any) {
         yield displayError(error.message);
     }
 }
 
-function* onRemoveFromCart(action) {
+function* onRemoveFromCart(action: { payload: string | number }) {
     yield put(removeItem(action.payload));
-    yield cartDB.items.delete(action.payload);
+    yield cartDB.table('items').delete(action.payload.toString());
 }
 
 function* onRemoveAll() {
-    yield cartDB.items.clear();
+    yield cartDB.table('items').clear();
     yield window.location.assign("/payment-confirmation");
 }
 
